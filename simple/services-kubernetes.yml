@@ -1,0 +1,114 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: service1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service1
+    spec:
+      containers:
+      - name: service1 
+        image: demo/service1:v1
+        ports:
+        - name: web
+          containerPort: 8080
+        env:
+          - name: JAEGER_SERVICE_NAME
+            value: service1
+          - name: JAEGER_AGENT_HOST
+            value: jaeger-all-in-one-agent
+          - name: JAEGER_SAMPLER_TYPE
+            value: const
+          - name: JAEGER_SAMPLER_PARAM
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: service1
+  labels:
+    app: service1
+spec:
+  type: NodePort
+  selector:
+    app: service1
+  ports:
+  - name: web
+    nodePort: 31900
+    port: 8080
+    protocol: TCP
+    targetPort: web
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ServiceMonitor
+metadata:
+  name: service1
+  labels:
+    team: frontend
+spec:
+  selector:
+    matchLabels:
+      app: service1
+  endpoints:
+  - port: web
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: service2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: service2
+    spec:
+      containers:
+      - name: service2 
+        image: demo/service2:v1
+        ports:
+        - name: web
+          containerPort: 8080
+        env:
+          - name: JAEGER_SERVICE_NAME
+            value: service2
+          - name: JAEGER_AGENT_HOST
+            value: jaeger-all-in-one-agent
+          - name: JAEGER_SAMPLER_TYPE
+            value: const
+          - name: JAEGER_SAMPLER_PARAM
+            value: "1"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: service2
+  labels:
+    app: service2
+spec:
+  type: NodePort
+  selector:
+    app: service2
+  ports:
+  - name: web
+    nodePort: 31901
+    port: 8080
+    protocol: TCP
+    targetPort: web
+---
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ServiceMonitor
+metadata:
+  name: service2
+  labels:
+    team: frontend
+spec:
+  selector:
+    matchLabels:
+      app: service2
+  endpoints:
+  - port: web
+
