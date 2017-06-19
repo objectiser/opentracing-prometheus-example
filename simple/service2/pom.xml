@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
+	<groupId>com.example.kubeotprom</groupId>
 	<artifactId>service2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -22,8 +22,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+
+		<jaeger.version>0.20.0-SNAPSHOT</jaeger.version>
+		<java-metrics.version>0.1.0</java-metrics.version>
 		<prometheus.version>0.0.23</prometheus.version>
-		<java-metrics.version>0.0.4-SNAPSHOT</java-metrics.version>
+		<opentracing-contrib-springweb.version>0.0.5</opentracing-contrib-springweb.version>
 	</properties>
 
 	<dependencies>
@@ -35,13 +38,13 @@
 		<dependency>
 			<groupId>io.opentracing.contrib</groupId>
 			<artifactId>opentracing-spring-web-autoconfigure</artifactId>
-			<version>0.0.5</version>
+			<version>${opentracing-contrib-springweb.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.uber.jaeger</groupId>
 			<artifactId>jaeger-tracerresolver</artifactId>
-			<version>0.20.0-SNAPSHOT</version>
+			<version>${jaeger.version}</version>
 		</dependency>
 
 		<!-- Hotspot JVM metrics -->
