@@ -20,6 +20,6 @@ kubectl create -f services-kubernetes.yml
 Final step is to obtain the URL for the _service1_ REST endpoint:
 
 ```
-minikube service service1 --url
+export SERVICE1=$(minikube service service1 --url)
 ```
 
