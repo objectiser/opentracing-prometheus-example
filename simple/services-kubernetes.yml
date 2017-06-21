@@ -24,6 +24,8 @@ spec:
             value: const
           - name: JAEGER_SAMPLER_PARAM
             value: "1"
+          - name: SERVICE2_URL
+            value: "http://service2:8080"
 ---
 kind: Service
 apiVersion: v1

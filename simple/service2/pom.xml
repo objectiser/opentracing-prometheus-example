@@ -26,7 +26,7 @@
 		<jaeger.version>0.20.0-SNAPSHOT</jaeger.version>
 		<java-metrics.version>0.1.0</java-metrics.version>
 		<prometheus.version>0.0.23</prometheus.version>
-		<opentracing-contrib-springweb.version>0.0.5</opentracing-contrib-springweb.version>
+		<opentracing-contrib-springweb.version>0.0.6</opentracing-contrib-springweb.version>
 	</properties>
 
 	<dependencies>
