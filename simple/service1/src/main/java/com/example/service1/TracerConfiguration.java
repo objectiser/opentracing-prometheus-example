@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class TracerConfiguration implements javax.servlet.ServletContextListener {
 
 	@Bean
-	public io.opentracing.Tracer jaegerTracer() {
+	public io.opentracing.Tracer tracer() {
 		return io.opentracing.contrib.metrics.Metrics.decorate(
 			io.opentracing.contrib.tracerresolver.TracerResolver.resolveTracer(),
 			PrometheusMetricsReporter.newMetricsReporter()
