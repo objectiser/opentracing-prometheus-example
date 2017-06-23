@@ -17,9 +17,9 @@ Run the following command two deploy the services, and prometheus service monito
 kubectl create -f services-kubernetes.yml
 ```
 
-Final step is to obtain the URL for the _service1_ REST endpoint:
+Final step is to obtain the URL for the _ordermgr_ REST endpoint:
 
 ```
-export SERVICE1=$(minikube service service1 --url)
+export ORDERMGR=$(minikube service ordermgr --url)
 ```
 

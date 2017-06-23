@@ -1,4 +1,4 @@
-package com.example.service2;
+package com.example.ordermgr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class Service2Application {
+public class OrderMgrApplication {
 
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
@@ -15,6 +15,6 @@ public class Service2Application {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(Service2Application.class, args);
+		SpringApplication.run(OrderMgrApplication.class, args);
 	}
 }

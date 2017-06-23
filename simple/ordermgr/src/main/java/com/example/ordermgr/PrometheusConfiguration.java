@@ -1,4 +1,4 @@
-package com.example.service1;
+package com.example.ordermgr;
 
 import org.springframework.context.annotation.Bean;
 import io.prometheus.client.CollectorRegistry;

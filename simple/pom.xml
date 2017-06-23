@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example.kubeotprom</groupId>
-	<artifactId>parent</artifactId>
+	<artifactId>kubeotprom-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -15,8 +15,8 @@
 	</description>
 
 	<modules>
-		<module>service1</module>
-		<module>service2</module>
+		<module>ordermgr</module>
+		<module>accountmgr</module>
 	</modules>
 
 	<build>

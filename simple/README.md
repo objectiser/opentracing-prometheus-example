@@ -1,6 +1,6 @@
 # Simple Two Service Example
 
-The example consists of two services, _service1_ and _service2_. The first service presents two REST endpoints
+The example consists of two services, _ordermgr_ and _accountmgr_. The first service presents two REST endpoints
 called _buy_ and _sell_. These REST methods will call a _hello_ REST endpoint on the second service.
 
 To deploy the example on the appropriate cloud environment:
@@ -8,29 +8,29 @@ To deploy the example on the appropriate cloud environment:
 * [Kubernetes instructions](Kubernetes.md)
 
 Once the services have been successfully deployed and started it is time to try out the services. Using
-the _service1_ endpoint address (provided as part of the instructions for installing the example in
+the _ordermgr_ endpoint address (provided as part of the instructions for installing the example in
 the cloud environment), perform some test calls to the service:
 
 ```
-curl $SERVICE1/buy
-curl $SERVICE1/sell
+curl $ORDERMGR/buy
+curl $ORDERMGR/sell
 ```
 
 Then go to the OpenTracing dashboard to examine the traces that were generated from the service invocations. These
-should show calls to _service1_ and subsequently from _service1_ to _service2_.
+should show calls to _ordermgr_ and subsequently from _ordermgr_ to _accountmgr_.
 
-Note that _service2_ will randomly flag an error, although the following call will explicitly create an
-error due to using an invalid URL within _service1_ when calling _service2_:
+Note that _accountmgr_ will randomly flag an error, although the following call will explicitly create an
+error due to using an invalid URL within _ordermgr_ when calling _accountmgr_:
 
 ```
-curl $SERVICE1/fail
+curl $ORDERMGR/fail
 ```
 
 Rather than manually invoke the endpoints above, the following script will loop randomly performing
 these calls:
 
 ```
-./genreqs.sh
+./genorders.sh
 ```
 
 Next go to the Prometheus dashboard to examine the metrics reported from those service invocations.
@@ -56,8 +56,8 @@ invocations received by a service). It can be an indication of when a service is
 errors.
 
 
-* `sum(increase(span_count{transaction="sell",service="service2"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error)`
+* `sum(increase(span_count{transaction="sell",service="accountmgr"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error)`
 
-This query is a variation of the first, with the additional constraints that the transaction is `sell` and service is `service2`. The 'transaction' field is propagated from _service1_ to _service2_ using the OpenTracing baggage concept - so it enables the business context in which _service2_'s operation was invoked to be understood, and used to isolate the metrics for that scenario.
+This query is a variation of the first, with the additional constraints that the transaction is `sell` and service is `accountmgr`. The 'transaction' field is propagated from _ordermgr_ to _accountmgr_ using the OpenTracing baggage concept - so it enables the business context in which _accountmgr_'s operation was invoked to be understood, and used to isolate the metrics for that scenario.
 
  

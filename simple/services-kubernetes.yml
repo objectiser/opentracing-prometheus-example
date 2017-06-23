@@ -1,42 +1,42 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: service1
+  name: ordermgr
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: service1
+        app: ordermgr
     spec:
       containers:
-      - name: service1 
-        image: demo/service1:v1
+      - name: ordermgr 
+        image: demo/kubeotprom-ordermgr:v1
         ports:
         - name: web
           containerPort: 8080
         env:
           - name: JAEGER_SERVICE_NAME
-            value: service1
+            value: ordermgr
           - name: JAEGER_AGENT_HOST
             value: jaeger-all-in-one-agent
           - name: JAEGER_SAMPLER_TYPE
             value: const
           - name: JAEGER_SAMPLER_PARAM
             value: "1"
-          - name: SERVICE2_URL
-            value: "http://service2:8080"
+          - name: ACCOUNTMGR_URL
+            value: "http://accountmgr:8080"
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: service1
+  name: ordermgr
   labels:
-    app: service1
+    app: ordermgr
 spec:
   type: NodePort
   selector:
-    app: service1
+    app: ordermgr
   ports:
   - name: web
     nodePort: 31900
@@ -47,36 +47,36 @@ spec:
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ServiceMonitor
 metadata:
-  name: service1
+  name: ordermgr
   labels:
     team: frontend
 spec:
   selector:
     matchLabels:
-      app: service1
+      app: ordermgr
   endpoints:
   - port: web
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: service2
+  name: accountmgr
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: service2
+        app: accountmgr
     spec:
       containers:
-      - name: service2 
-        image: demo/service2:v1
+      - name: accountmgr 
+        image: demo/kubeotprom-accountmgr:v1
         ports:
         - name: web
           containerPort: 8080
         env:
           - name: JAEGER_SERVICE_NAME
-            value: service2
+            value: accountmgr
           - name: JAEGER_AGENT_HOST
             value: jaeger-all-in-one-agent
           - name: JAEGER_SAMPLER_TYPE
@@ -87,13 +87,13 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: service2
+  name: accountmgr
   labels:
-    app: service2
+    app: accountmgr
 spec:
   type: NodePort
   selector:
-    app: service2
+    app: accountmgr
   ports:
   - name: web
     nodePort: 31901
@@ -104,13 +104,13 @@ spec:
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: ServiceMonitor
 metadata:
-  name: service2
+  name: accountmgr
   labels:
     team: frontend
 spec:
   selector:
     matchLabels:
-      app: service2
+      app: accountmgr
   endpoints:
   - port: web
 

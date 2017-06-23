@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example.kubeotprom</groupId>
-	<artifactId>service2</artifactId>
+	<artifactId>kubeotprom-accountmgr</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Service 2</name>
-	<description>Service2</description>
+	<name>Account Manager</name>
+	<description>Account Manager</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
