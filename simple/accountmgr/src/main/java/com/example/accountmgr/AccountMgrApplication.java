@@ -1,4 +1,4 @@
-package com.example.service1;
+package com.example.accountmgr;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class Service1Application {
+public class AccountMgrApplication {
 
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
@@ -15,6 +15,6 @@ public class Service1Application {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(Service1Application.class, args);
+		SpringApplication.run(AccountMgrApplication.class, args);
 	}
 }

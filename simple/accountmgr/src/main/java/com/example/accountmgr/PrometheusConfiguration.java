@@ -1,4 +1,4 @@
-package com.example.service2;
+package com.example.accountmgr;
 
 import org.springframework.context.annotation.Bean;
 import io.prometheus.client.CollectorRegistry;

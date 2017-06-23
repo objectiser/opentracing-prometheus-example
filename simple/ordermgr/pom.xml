@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example.kubeotprom</groupId>
-	<artifactId>service1</artifactId>
+	<artifactId>kubeotprom-ordermgr</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Service 1</name>
-	<description>Service1</description>
+	<name>Order Manager</name>
+	<description>Order Manager</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

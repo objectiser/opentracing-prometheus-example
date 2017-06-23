@@ -1,4 +1,4 @@
-package com.example.service1;
+package com.example.accountmgr;
 
 import org.springframework.context.annotation.Bean;
 import io.opentracing.contrib.metrics.prometheus.*;

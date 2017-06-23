@@ -1,4 +1,4 @@
-package com.example.service1;
+package com.example.ordermgr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-public class TxnController {
+public class OrderMgrController {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    private static String service2Url = System.getenv("SERVICE2_URL");
+    private static String accountMgrUrl = System.getenv("ACCOUNTMGR_URL");
 
     @Autowired
     private io.opentracing.Tracer tracer;
@@ -21,7 +21,7 @@ public class TxnController {
     public String buy() throws InterruptedException {
         Thread.sleep(1 + (long)(Math.random()*500));
         tracer.activeSpan().setBaggageItem("transaction", "buy");
-        ResponseEntity<String> response = restTemplate.getForEntity(service2Url + "/hello", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(accountMgrUrl + "/account", String.class);
         return "BUY + " + response.getBody();
     }
 
@@ -29,14 +29,14 @@ public class TxnController {
     public String sell() throws InterruptedException {
         Thread.sleep(1 + (long)(Math.random()*500));
         tracer.activeSpan().setBaggageItem("transaction", "sell");
-        ResponseEntity<String> response = restTemplate.getForEntity(service2Url + "/hello", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(accountMgrUrl + "/account", String.class);
         return "SELL + " + response.getBody();
     }
 
     @RequestMapping("/fail")
     public String fail() throws InterruptedException {
         Thread.sleep(1 + (long)(Math.random()*500));
-        ResponseEntity<String> response = restTemplate.getForEntity(service2Url + "/missing", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(accountMgrUrl + "/missing", String.class);
         return "FAIL + " + response.getBody();
     }
 }
