@@ -1,7 +1,5 @@
 # Simple Two Service Example
 
-:warning: This example is dependent upon Jaeger java client 0.20.0, which will be released shortly.
-
 The example consists of two services, _ordermgr_ and _accountmgr_. The first service presents two REST endpoints
 called _buy_ and _sell_. These REST methods will call a _hello_ REST endpoint on the second service.
 
