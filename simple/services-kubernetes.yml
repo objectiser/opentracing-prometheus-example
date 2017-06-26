@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ordermgr
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
@@ -62,7 +62,7 @@ kind: Deployment
 metadata:
   name: accountmgr
 spec:
-  replicas: 1
+  replicas: 3
   template:
     metadata:
       labels:
