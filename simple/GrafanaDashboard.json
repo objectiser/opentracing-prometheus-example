@@ -251,7 +251,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(increase(span_count{error=\"true\",span_kind=\"server\"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind) / sum(increase(span_count{error=\"false\",span_kind=\"server\"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind)",
+              "expr": "sum(increase(span_count{error=\"true\",span_kind=\"server\"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind) / sum(increase(span_count{span_kind=\"server\"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind)",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
