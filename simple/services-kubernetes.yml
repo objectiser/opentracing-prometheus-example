@@ -19,11 +19,13 @@ spec:
           - name: JAEGER_SERVICE_NAME
             value: ordermgr
           - name: JAEGER_AGENT_HOST
-            value: jaeger-all-in-one-agent
+            value: jaeger-agent
           - name: JAEGER_SAMPLER_TYPE
             value: const
           - name: JAEGER_SAMPLER_PARAM
             value: "1"
+          - name: JAEGER_REPORTER_LOG_SPANS
+            value: "true"
           - name: ACCOUNTMGR_URL
             value: "http://accountmgr:8080"
 ---
@@ -34,12 +36,11 @@ metadata:
   labels:
     app: ordermgr
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: ordermgr
   ports:
   - name: web
-    nodePort: 31900
     port: 8080
     protocol: TCP
     targetPort: web
@@ -78,11 +79,13 @@ spec:
           - name: JAEGER_SERVICE_NAME
             value: accountmgr
           - name: JAEGER_AGENT_HOST
-            value: jaeger-all-in-one-agent
+            value: jaeger-agent
           - name: JAEGER_SAMPLER_TYPE
             value: const
           - name: JAEGER_SAMPLER_PARAM
             value: "1"
+          - name: JAEGER_REPORTER_LOG_SPANS
+            value: "true"
 ---
 kind: Service
 apiVersion: v1
@@ -91,12 +94,11 @@ metadata:
   labels:
     app: accountmgr
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: accountmgr
   ports:
   - name: web
-    nodePort: 31901
     port: 8080
     protocol: TCP
     targetPort: web
