@@ -62,7 +62,7 @@ kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-kuberne
 Once the pods are all started, then open the dashboard using the link returned from:
 
 ```
-minikube service jaeger-all-in-one --url
+minikube service jaeger-query --url
 ```
 
 ## Shutting down
