@@ -7,6 +7,8 @@ To deploy the example on the appropriate cloud environment:
 
 * [Kubernetes instructions](Kubernetes.md)
 
+* [OpenShift instructions](OpenShift.md)
+
 Once the services have been successfully deployed and started it is time to try out the services. Using
 the _ordermgr_ endpoint address (provided as part of the instructions for installing the example in
 the cloud environment), perform some test calls to the service:
