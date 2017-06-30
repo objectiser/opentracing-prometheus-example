@@ -10,7 +10,7 @@ minishift start --openshift-version=v3.6.0-alpha.2
 You can use a more [recent version](https://github.com/openshift/origin/releases) if available.
 
 When fully started, then launch the dashboard using the link displayed following `The server is accessible via web console at:
-`. Navigate to the `New Project` overview page.
+`. Log in using the credentials `developer/developer` and navigate to the `New Project` overview page.
 
 NOTE: After using `oc create -f ...` to deploy something to Kubernetes, use the console to check that it
 is fully running before moving onto the next step.
