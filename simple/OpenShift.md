@@ -23,10 +23,10 @@ The create the route to provide public access to the REST endpoint:
 oc create route edge ordermgr --service=ordermgr
 ```
 
-Final step is to obtain the URL for the new route from the OpenShift console, under the `ordermgr` application/deployment, of the form`https://ordermgr-myproject.192.168.42.161.nip.io/`, and use it to setup an environment variable `ORDERMGR`. NOTE: remove the final '/' when doing to the export, for example
+Final step is to obtain the URL for the new route:
 
 
 ```
-export ORDERMGR=https://ordermgr-myproject.192.168.42.161.nip.io
+export ORDERMGR=`oc get route jaeger-query -o=jsonpath="{.spec.host}"`
 ```
 
