@@ -27,6 +27,6 @@ Final step is to obtain the URL for the new route:
 
 
 ```
-export ORDERMGR=`oc get route jaeger-query -o=jsonpath="{.spec.host}"`
+export ORDERMGR=`oc get route ordermgr -o=jsonpath="{.spec.host}"`
 ```
 
