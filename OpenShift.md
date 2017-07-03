@@ -9,6 +9,9 @@ minishift start --openshift-version=v3.6.0-alpha.2
 
 You can use a more [recent version](https://github.com/openshift/origin/releases) if available.
 
+NOTE: The alpha version is currently required, as the previous stable version does not include Kubernetes RBAC authorizaion
+support.
+
 When fully started, then launch the dashboard using the link displayed following `The server is accessible via web console at:
 `. Log in using the credentials `developer/developer` and navigate to the `New Project` overview page.
 
@@ -48,7 +51,7 @@ The next step is to create a route to make the Prometheus UI URL accessible:
 oc create route edge prometheus --service=prometheus
 ```
 
-Go to the OpenShift console Overview, expand the entry for `prometheus-prometheus` and you will see a link of the form `https://prometheus-myproject.192.168.42.161.nip.io/` which can be used to open the Prometheus console.
+Go to the OpenShift console Overview, expand the entry for `prometheus-prometheus` and you will see a link of the form https://prometheus-myproject.192.168.42.161.nip.io/ which can be used to open the Prometheus console.
 
 ## OpenTracing
 
