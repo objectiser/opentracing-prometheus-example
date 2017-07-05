@@ -24,7 +24,7 @@ do
 
     echo "Calling operation $operationName"
 
-    curl $ORDERMGR/$operationName
+    curl -k $ORDERMGR/$operationName
 
     sleep 1.5
 done

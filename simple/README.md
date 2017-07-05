@@ -7,6 +7,8 @@ To deploy the example on the appropriate cloud environment:
 
 * [Kubernetes instructions](Kubernetes.md)
 
+* [OpenShift instructions](OpenShift.md)
+
 Once the services have been successfully deployed and started it is time to try out the services. Using
 the _ordermgr_ endpoint address (provided as part of the instructions for installing the example in
 the cloud environment), perform some test calls to the service:
@@ -49,7 +51,7 @@ for those fields will now be grouped/aggregated into a single metric.
 This query shows the average duration over time.
 
 
-* `sum(increase(span_count{error="true",span_kind="server"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind) / sum(increase(span_count{error="false",span_kind="server"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind)`
+* `sum(increase(span_count{error="true",span_kind="server"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind) / sum(increase(span_count{span_kind="server"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind)`
 
 This query shows the ratio between successful and erronous server spans (i.e. the spans representing the
 invocations received by a service). It can be an indication of when a service is generating too many
