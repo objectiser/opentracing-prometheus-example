@@ -15,6 +15,7 @@ public class TracerConfiguration implements javax.servlet.ServletContextListener
 			io.opentracing.contrib.tracerresolver.TracerResolver.resolveTracer(),
 			PrometheusMetricsReporter.newMetricsReporter()
 				.withBaggageLabel("transaction","n/a")
+				.withConstLabel("version", System.getenv("VERSION"))
 				.build());
 	}
 

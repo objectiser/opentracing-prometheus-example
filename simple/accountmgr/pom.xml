@@ -96,7 +96,8 @@
 				<version>0.4.11</version>
 				<configuration>
 					<imageName>demo/${project.artifactId}</imageName>
-					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+					<baseImage>jboss/base-jdk:8</baseImage>
+					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
@@ -107,6 +108,9 @@
 					<imageTags>
 						<imageTag>v1</imageTag>
 					</imageTags>
+					<env>
+						<VERSION>${project.version}</VERSION>
+					</env>
 				</configuration>
 			</plugin>
 		</plugins>
