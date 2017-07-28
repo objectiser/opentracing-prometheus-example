@@ -1,7 +1,6 @@
 package com.example.accountmgr;
 
 import org.springframework.context.annotation.Bean;
-import io.opentracing.contrib.metrics.prometheus.*;
 import java.util.regex.Pattern;
 
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +10,7 @@ public class TracerConfiguration implements javax.servlet.ServletContextListener
 
 	@Bean
 	public io.opentracing.Tracer tracer() {
-		return io.opentracing.contrib.metrics.Metrics.decorate(
-			io.opentracing.contrib.tracerresolver.TracerResolver.resolveTracer(),
-			PrometheusMetricsReporter.newMetricsReporter()
-				.withBaggageLabel("transaction","n/a")
-				.withConstLabel("version", System.getenv("VERSION"))
-				.build());
+		return io.opentracing.contrib.tracerresolver.TracerResolver.resolveTracer();
 	}
 
 	@Override

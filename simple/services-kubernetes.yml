@@ -30,6 +30,8 @@ spec:
             value: "version=${VERSION}"
           - name: ACCOUNTMGR_URL
             value: "http://accountmgr:8080"
+          - name: OPENTRACING_METRICS_EXPORTER_HTTP_PATH
+            value: "/metrics"
 ---
 kind: Service
 apiVersion: v1
@@ -90,6 +92,8 @@ spec:
             value: "true"
           - name: JAEGER_TAGS
             value: "version=${VERSION}"
+          - name: OPENTRACING_METRICS_EXPORTER_HTTP_PATH
+            value: "/metrics"
 ---
 kind: Service
 apiVersion: v1

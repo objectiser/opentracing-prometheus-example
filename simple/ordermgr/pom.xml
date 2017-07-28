@@ -26,7 +26,8 @@
 		<jaeger.version>0.20.6</jaeger.version>
 		<java-metrics.version>0.1.1</java-metrics.version>
 		<prometheus.version>0.0.23</prometheus.version>
-		<opentracing-contrib-springweb.version>0.0.6</opentracing-contrib-springweb.version>
+		<opentracing-contrib-springweb.version>0.0.7</opentracing-contrib-springweb.version>
+		<version.opentracing.contrib.opentracing-metrics>0.1.3</version.opentracing.contrib.opentracing-metrics>
 	</properties>
 
 	<dependencies>
@@ -39,6 +40,11 @@
 			<groupId>io.opentracing.contrib</groupId>
 			<artifactId>opentracing-spring-web-autoconfigure</artifactId>
 			<version>${opentracing-contrib-springweb.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.opentracing.contrib</groupId>
+			<artifactId>opentracing-metrics-prometheus-spring-autoconfigure</artifactId>
+			<version>${version.opentracing.contrib.opentracing-metrics}</version>
 		</dependency>
 
 		<dependency>
@@ -64,17 +70,6 @@
 		     <groupId>io.prometheus</groupId>
 		     <artifactId>simpleclient</artifactId>
 		     <version>${prometheus.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentracing.contrib</groupId>
-			<artifactId>opentracing-metrics</artifactId>
-			<version>${java-metrics.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.opentracing.contrib</groupId>
-			<artifactId>opentracing-metrics-prometheus</artifactId>
-			<version>${java-metrics.version}</version>
 		</dependency>
 
 		<dependency>
