@@ -24,9 +24,9 @@
 		<java.version>1.8</java.version>
 
 		<jaeger.version>0.20.6</jaeger.version>
-		<java-metrics.version>0.1.1</java-metrics.version>
 		<prometheus.version>0.0.23</prometheus.version>
-		<opentracing-contrib-springweb.version>0.0.6</opentracing-contrib-springweb.version>
+		<opentracing-contrib-springweb.version>0.0.9</opentracing-contrib-springweb.version>
+		<opentracing-contrib-opentracing-metrics.version>0.1.4</opentracing-contrib-opentracing-metrics.version>
 	</properties>
 
 	<dependencies>
@@ -40,6 +40,11 @@
 			<artifactId>opentracing-spring-web-autoconfigure</artifactId>
 			<version>${opentracing-contrib-springweb.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>io.opentracing.contrib</groupId>
+			<artifactId>opentracing-metrics-prometheus-spring-autoconfigure</artifactId>
+			<version>${opentracing-contrib-opentracing-metrics.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.uber.jaeger</groupId>
@@ -47,34 +52,20 @@
 			<version>${jaeger.version}</version>
 		</dependency>
 
-		<!-- Hotspot JVM metrics -->
 		<dependency>
 		     <groupId>io.prometheus</groupId>
 		     <artifactId>simpleclient_hotspot</artifactId>
 		     <version>${prometheus.version}</version>
 		</dependency>
-		<!-- Exposition servlet -->
 		<dependency>
 		     <groupId>io.prometheus</groupId>
 		     <artifactId>simpleclient_servlet</artifactId>
 		     <version>${prometheus.version}</version>
 		</dependency>
-		<!-- The client -->
 		<dependency>
 		     <groupId>io.prometheus</groupId>
 		     <artifactId>simpleclient</artifactId>
 		     <version>${prometheus.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.opentracing.contrib</groupId>
-			<artifactId>opentracing-metrics</artifactId>
-			<version>${java-metrics.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.opentracing.contrib</groupId>
-			<artifactId>opentracing-metrics-prometheus</artifactId>
-			<version>${java-metrics.version}</version>
 		</dependency>
 
 		<dependency>

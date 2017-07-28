@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: ordermgr
+  name: ordermgr-canary
 spec:
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: ordermgr 
-        image: demo/kubeotprom-ordermgr:0.0.1
+        image: demo/kubeotprom-ordermgr:0.0.2
         ports:
         - name: web
           containerPort: 8080
@@ -33,49 +33,20 @@ spec:
           - name: OPENTRACING_METRICS_EXPORTER_HTTP_PATH
             value: "/metrics"
 ---
-kind: Service
-apiVersion: v1
-metadata:
-  name: ordermgr
-  labels:
-    app: ordermgr
-spec:
-  type: LoadBalancer
-  selector:
-    app: ordermgr
-  ports:
-  - name: web
-    port: 8080
-    protocol: TCP
-    targetPort: web
----
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ServiceMonitor
-metadata:
-  name: ordermgr
-  labels:
-    team: frontend
-spec:
-  selector:
-    matchLabels:
-      app: ordermgr
-  endpoints:
-  - port: web
----
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: accountmgr
+  name: accountmgr-canary
 spec:
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
         app: accountmgr
     spec:
       containers:
-      - name: accountmgr 
-        image: demo/kubeotprom-accountmgr:0.0.1
+      - name: accountmgr
+        image: demo/kubeotprom-accountmgr:0.0.2
         ports:
         - name: web
           containerPort: 8080
@@ -94,33 +65,4 @@ spec:
             value: "version=${VERSION}"
           - name: OPENTRACING_METRICS_EXPORTER_HTTP_PATH
             value: "/metrics"
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: accountmgr
-  labels:
-    app: accountmgr
-spec:
-  type: LoadBalancer
-  selector:
-    app: accountmgr
-  ports:
-  - name: web
-    port: 8080
-    protocol: TCP
-    targetPort: web
----
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ServiceMonitor
-metadata:
-  name: accountmgr
-  labels:
-    team: frontend
-spec:
-  selector:
-    matchLabels:
-      app: accountmgr
-  endpoints:
-  - port: web
 
