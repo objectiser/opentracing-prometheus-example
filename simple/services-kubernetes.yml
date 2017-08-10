@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: ordermgr 
-        image: demo/kubeotprom-ordermgr:v1
+        image: demo/kubeotprom-ordermgr:0.0.1
         ports:
         - name: web
           containerPort: 8080
@@ -73,7 +73,7 @@ spec:
     spec:
       containers:
       - name: accountmgr 
-        image: demo/kubeotprom-accountmgr:v1
+        image: demo/kubeotprom-accountmgr:0.0.1
         ports:
         - name: web
           containerPort: 8080
