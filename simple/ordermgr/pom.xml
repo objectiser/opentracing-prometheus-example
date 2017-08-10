@@ -106,7 +106,7 @@
 						</resource>
 					</resources>
 					<imageTags>
-						<imageTag>v1</imageTag>
+						<imageTag>${project.version}</imageTag>
 					</imageTags>
 					<env>
 						<VERSION>${project.version}</VERSION>
