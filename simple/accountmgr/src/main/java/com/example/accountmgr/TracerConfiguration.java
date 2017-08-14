@@ -1,17 +1,11 @@
 package com.example.accountmgr;
 
-import org.springframework.context.annotation.Bean;
 import java.util.regex.Pattern;
 
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class TracerConfiguration implements javax.servlet.ServletContextListener {
-
-	@Bean
-	public io.opentracing.Tracer tracer() {
-		return io.opentracing.contrib.tracerresolver.TracerResolver.resolveTracer();
-	}
 
 	@Override
 	public void contextInitialized(javax.servlet.ServletContextEvent sce) {
