@@ -49,7 +49,7 @@ spec:
     protocol: TCP
     targetPort: web
 ---
-apiVersion: monitoring.coreos.com/v1
+apiVersion: monitoring.coreos.com/v1alpha1
 kind: ServiceMonitor
 metadata:
   name: ordermgr
@@ -111,7 +111,7 @@ spec:
     protocol: TCP
     targetPort: web
 ---
-apiVersion: monitoring.coreos.com/v1
+apiVersion: monitoring.coreos.com/v1alpha1
 kind: ServiceMonitor
 metadata:
   name: accountmgr

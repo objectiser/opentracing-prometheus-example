@@ -30,7 +30,7 @@ oc login -u system:admin
 oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:myproject:default
 oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:myproject:prometheus-operator
 
-oc create -f https://raw.githubusercontent.com/coreos/prometheus-operator/master/bundle.yaml
+oc create -f https://raw.githubusercontent.com/coreos/prometheus-operator/v0.11.0/bundle.yaml
 ```
 
 Add configuration to locate service monitors based on label "team: frontend":
