@@ -12,7 +12,7 @@ public class OrderMgrController {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static String accountMgrUrl = System.getenv("ACCOUNTMGR_URL");
+    private static String accountMgrUrl = System.getProperty("ACCOUNTMGR_URL", System.getenv("ACCOUNTMGR_URL"));
 
     @Autowired
     private io.opentracing.Tracer tracer;
