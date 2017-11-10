@@ -39,6 +39,7 @@ metadata:
   name: ordermgr
   labels:
     app: ordermgr
+    team: frontend
 spec:
   type: LoadBalancer
   selector:
@@ -48,19 +49,6 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: web
----
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ServiceMonitor
-metadata:
-  name: ordermgr
-  labels:
-    team: frontend
-spec:
-  selector:
-    matchLabels:
-      app: ordermgr
-  endpoints:
-  - port: web
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -101,6 +89,7 @@ metadata:
   name: accountmgr
   labels:
     app: accountmgr
+    team: frontend
 spec:
   type: LoadBalancer
   selector:
@@ -110,17 +99,3 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: web
----
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ServiceMonitor
-metadata:
-  name: accountmgr
-  labels:
-    team: frontend
-spec:
-  selector:
-    matchLabels:
-      app: accountmgr
-  endpoints:
-  - port: web
-
