@@ -29,7 +29,7 @@ project. To install, use the following command:
 kubectl create -f https://raw.githubusercontent.com/coreos/prometheus-operator/v0.11.0/bundle.yaml
 ```
 
-Add configuration to locate service monitors based on label "team: frontend":
+Add configuration to locate service monitors based on label "scrape: true":
 
 ```
 kubectl create -f prometheus-kubernetes.yml

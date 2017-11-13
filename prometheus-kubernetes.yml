@@ -55,9 +55,9 @@ data:
       kubernetes_sd_configs:
       - role: service
       relabel_configs:
-      - source_labels: [__meta_kubernetes_service_label_team]
+      - source_labels: [__meta_kubernetes_service_label_scrape]
         action: keep
-        regex: frontend
+        regex: true
 ---
 apiVersion: v1
 kind: Service

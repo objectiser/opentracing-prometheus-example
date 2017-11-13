@@ -33,7 +33,7 @@ oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:mypro
 oc create -f https://raw.githubusercontent.com/coreos/prometheus-operator/v0.11.0/bundle.yaml
 ```
 
-Add configuration to locate service monitors based on label "team: frontend":
+Add configuration to locate service monitors based on label "scrape: true":
 
 ```
 oc create -f prometheus-kubernetes.yml
