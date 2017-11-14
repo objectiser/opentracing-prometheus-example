@@ -10,7 +10,7 @@ minishift start
 When fully started, then launch the dashboard using the link displayed following `The server is accessible via web console at:
 `. Log in using the credentials `developer/developer` and navigate to the `New Project` overview page.
 
-NOTE: After using `oc create -f ...` to deploy something to Kubernetes, use the console to check that it
+NOTE: After using `oc create -f ...` to deploy something to OpenShift, use the console to check that it
 is fully running before moving onto the next step.
 
 ## Prometheus
