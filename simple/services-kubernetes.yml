@@ -39,7 +39,8 @@ metadata:
   name: ordermgr
   labels:
     app: ordermgr
-    scrape: "true"
+  annotations:
+    prometheus.io/scrape: "true"
 spec:
   type: LoadBalancer
   selector:
@@ -89,7 +90,8 @@ metadata:
   name: accountmgr
   labels:
     app: accountmgr
-    scrape: "true"
+  annotations:
+    prometheus.io/scrape: "true"
 spec:
   type: LoadBalancer
   selector:

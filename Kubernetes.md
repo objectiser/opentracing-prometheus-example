@@ -20,7 +20,7 @@ NOTE: After using `kubectl create -f ...` to deploy something to Kubernetes, use
 is fully running before moving onto the next step.
 
 ## Prometheus
-Add configuration to locate service monitors based on label "scrape: true":
+Add configuration to locate services to be monitored based on annotations: prometheus.io/scrape: "true".
 
 ```
 kubectl create -f prometheus-kubernetes.yml
