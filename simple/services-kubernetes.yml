@@ -39,7 +39,7 @@ metadata:
   name: ordermgr
   labels:
     app: ordermgr
-    scrape: true
+    scrape: "true"
 spec:
   type: LoadBalancer
   selector:
@@ -89,7 +89,7 @@ metadata:
   name: accountmgr
   labels:
     app: accountmgr
-    scrape: true
+    scrape: "true"
 spec:
   type: LoadBalancer
   selector:
