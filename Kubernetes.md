@@ -20,27 +20,11 @@ NOTE: After using `kubectl create -f ...` to deploy something to Kubernetes, use
 is fully running before moving onto the next step.
 
 ## Prometheus
-
-To obtain metrics from the deployed services, we will use the
-[coreos prometheus operator](https://coreos.com/operators/prometheus/docs/latest/user-guides/getting-started.html)
-project. To install, use the following command:
-
-```
-kubectl create -f https://raw.githubusercontent.com/coreos/prometheus-operator/v0.11.0/bundle.yaml
-```
-
-Add configuration to locate service monitors based on label "team: frontend":
+Add configuration to locate services to be monitored based on annotations: prometheus.io/scrape: "true".
 
 ```
 kubectl create -f prometheus-kubernetes.yml
 ```
-
-The actual service monitors will be configured with the deployed services.
-
-TODO: Currently there is one service monitor per service - using the label associated with the app. However
-it may be good to try having a single service monitor with a more generic label, which the services can
-be associated with.
-
 Open the Prometheus dashboard using the link returned from:
 
 ```

@@ -8,6 +8,8 @@ spec:
     metadata:
       labels:
         app: ordermgr
+      annotations:
+        prometheus.io/scrape: "true"
     spec:
       containers:
       - name: ordermgr 
@@ -49,19 +51,6 @@ spec:
     protocol: TCP
     targetPort: web
 ---
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ServiceMonitor
-metadata:
-  name: ordermgr
-  labels:
-    team: frontend
-spec:
-  selector:
-    matchLabels:
-      app: ordermgr
-  endpoints:
-  - port: web
----
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -72,6 +61,8 @@ spec:
     metadata:
       labels:
         app: accountmgr
+      annotations:
+        prometheus.io/scrape: "true"
     spec:
       containers:
       - name: accountmgr 
@@ -110,17 +101,3 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: web
----
-apiVersion: monitoring.coreos.com/v1alpha1
-kind: ServiceMonitor
-metadata:
-  name: accountmgr
-  labels:
-    team: frontend
-spec:
-  selector:
-    matchLabels:
-      app: accountmgr
-  endpoints:
-  - port: web
-
