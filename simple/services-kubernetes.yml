@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       labels:
-        app: ordermgr
+        service: ordermgr
       annotations:
         prometheus.io/scrape: "true"
     spec:
@@ -40,11 +40,11 @@ apiVersion: v1
 metadata:
   name: ordermgr
   labels:
-    app: ordermgr
+    service: ordermgr
 spec:
   type: LoadBalancer
   selector:
-    app: ordermgr
+    service: ordermgr
   ports:
   - name: web
     port: 8080
@@ -60,7 +60,7 @@ spec:
   template:
     metadata:
       labels:
-        app: accountmgr
+        service: accountmgr
       annotations:
         prometheus.io/scrape: "true"
     spec:
@@ -91,11 +91,11 @@ apiVersion: v1
 metadata:
   name: accountmgr
   labels:
-    app: accountmgr
+    service: accountmgr
 spec:
   type: LoadBalancer
   selector:
-    app: accountmgr
+    service: accountmgr
   ports:
   - name: web
     port: 8080
