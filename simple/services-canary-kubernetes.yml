@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       labels:
-        app: ordermgr
+        service: ordermgr
     spec:
       containers:
       - name: ordermgr 
@@ -42,7 +42,7 @@ spec:
   template:
     metadata:
       labels:
-        app: accountmgr
+        service: accountmgr
     spec:
       containers:
       - name: accountmgr
