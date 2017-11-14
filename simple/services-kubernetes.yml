@@ -8,6 +8,8 @@ spec:
     metadata:
       labels:
         app: ordermgr
+      annotations:
+        prometheus.io/scrape: "true"
     spec:
       containers:
       - name: ordermgr 
@@ -39,8 +41,6 @@ metadata:
   name: ordermgr
   labels:
     app: ordermgr
-  annotations:
-    prometheus.io/scrape: "true"
 spec:
   type: LoadBalancer
   selector:
@@ -61,6 +61,8 @@ spec:
     metadata:
       labels:
         app: accountmgr
+      annotations:
+        prometheus.io/scrape: "true"
     spec:
       containers:
       - name: accountmgr 
@@ -90,8 +92,6 @@ metadata:
   name: accountmgr
   labels:
     app: accountmgr
-  annotations:
-    prometheus.io/scrape: "true"
 spec:
   type: LoadBalancer
   selector:
