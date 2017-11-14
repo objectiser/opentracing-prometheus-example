@@ -39,26 +39,26 @@ Next go to the Prometheus dashboard to examine the metrics reported from those s
 
 Some example queries:
 
-* `sum(increase(span_count[1m])) without (pod,instance,job,namespace,endpoint,transaction,error)`
+* `sum(increase(span_count[1m])) without (pod,instance,job,namespace,pod_template_hash,transaction,error)`
 
 This query will return span count distribution ignoring the fields listed in the brackets listed after
 the `without` keyword. This means that the individual metrics that would otherwise be individually displayed
 for those fields will now be grouped/aggregated into a single metric.
 
 
-* `avg(rate(span_sum[1m])) without (pod,instance,job,namespace,endpoint,transaction,error)`
+* `avg(rate(span_sum[1m])) without (pod,instance,job,namespace,pod_template_hash,transaction,error)`
 
 This query shows the average duration over time.
 
 
-* `sum(increase(span_count{error="true",span_kind="server"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind) / sum(increase(span_count{span_kind="server"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error,operation,span_kind)`
+* `sum(increase(span_count{error="true",span_kind="server"}[1m])) without (pod,instance,job,namespace,pod_template_hash,transaction,error,operation,span_kind) / sum(increase(span_count{span_kind="server"}[1m])) without (pod,instance,job,namespace,pod_template_hash,transaction,error,operation,span_kind)`
 
 This query shows the ratio between successful and erronous server spans (i.e. the spans representing the
 invocations received by a service). It can be an indication of when a service is generating too many
 errors.
 
 
-* `sum(increase(span_count{transaction="sell",service="accountmgr"}[1m])) without (pod,instance,job,namespace,endpoint,transaction,error)`
+* `sum(increase(span_count{transaction="sell",service="accountmgr"}[1m])) without (pod,instance,job,namespace,pod_template_hash,transaction,error)`
 
 This query is a variation of the first, with the additional constraints that the transaction is `sell` and service is `accountmgr`. The 'transaction' field is propagated from _ordermgr_ to _accountmgr_ using the OpenTracing baggage concept - so it enables the business context in which _accountmgr_'s operation was invoked to be understood, and used to isolate the metrics for that scenario.
 
