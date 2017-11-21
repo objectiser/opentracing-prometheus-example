@@ -1,5 +1,7 @@
 package com.example.ordermgr;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,7 @@ public class OrderMgrController {
     @RequestMapping("/buy")
     public String buy() throws InterruptedException {
         Thread.sleep(1 + (long)(Math.random()*500));
-        tracer.activeSpan().setBaggageItem("transaction", "buy");
+        Optional.ofNullable(tracer.activeSpan()).ifPresent(as -> as.setBaggageItem("transaction", "buy"));
         ResponseEntity<String> response = restTemplate.getForEntity(accountMgrUrl + "/account", String.class);
         return "BUY + " + response.getBody();
     }
@@ -28,7 +30,7 @@ public class OrderMgrController {
     @RequestMapping("/sell")
     public String sell() throws InterruptedException {
         Thread.sleep(1 + (long)(Math.random()*500));
-        tracer.activeSpan().setBaggageItem("transaction", "sell");
+        Optional.ofNullable(tracer.activeSpan()).ifPresent(as -> as.setBaggageItem("transaction", "sell"));
         ResponseEntity<String> response = restTemplate.getForEntity(accountMgrUrl + "/account", String.class);
         return "SELL + " + response.getBody();
     }
