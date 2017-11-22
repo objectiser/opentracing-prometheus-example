@@ -86,7 +86,7 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.11</version>
 				<configuration>
-					<imageName>demo/${project.artifactId}</imageName>
+					<imageName>objectiser/${project.artifactId}</imageName>
 					<baseImage>jboss/base-jdk:8</baseImage>
 					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
 					<resources>
