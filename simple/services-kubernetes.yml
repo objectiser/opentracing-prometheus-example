@@ -17,6 +17,8 @@ spec:
         ports:
         - name: web
           containerPort: 8080
+        - name: prometheus-jmx
+          containerPort: 9099
         env:
           - name: JAEGER_SERVICE_NAME
             value: ordermgr
@@ -70,6 +72,8 @@ spec:
         ports:
         - name: web
           containerPort: 8080
+        - name: prometheus-jmx
+          containerPort: 9099
         env:
           - name: JAEGER_SERVICE_NAME
             value: accountmgr

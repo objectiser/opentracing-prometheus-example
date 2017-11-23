@@ -87,15 +87,15 @@
 
 	</dependencies>
 
- 	<build>
-    		<plugins>
+	<build>
+		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
       			<plugin>
-        			<groupId>io.fabric8</groupId>
-        			<artifactId>docker-maven-plugin</artifactId>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
 				<version>${fabric8.version}</version>
 				<configuration>
 					<images>

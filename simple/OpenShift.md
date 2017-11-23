@@ -16,7 +16,7 @@ NOTE: To push to a remote registry you can use:
 mvn clean install docker:build docker:push -docker.registry=docker.io/your_username
 ```
 
-Run the following command two deploy the services, and prometheus service monitors for those services:
+Run the following command to deploy the services, and prometheus service monitors for those services:
 
 ```
 oc create -f services-kubernetes.yml
