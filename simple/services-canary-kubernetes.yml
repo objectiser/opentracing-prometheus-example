@@ -10,8 +10,8 @@ spec:
         service: ordermgr
     spec:
       containers:
-      - name: ordermgr 
-        image: objectiser/kubeotprom-ordermgr:0.0.2
+      - name: ordermgr
+        image: local/kubeotprom-ordermgr:0.0.2
         ports:
         - name: web
           containerPort: 8080
@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
       - name: accountmgr
-        image: objectiser/kubeotprom-accountmgr:0.0.2
+        image: local/kubeotprom-accountmgr:0.0.2
         ports:
         - name: web
           containerPort: 8080
@@ -65,4 +65,3 @@ spec:
             value: "version=${VERSION}"
           - name: OPENTRACING_METRICS_EXPORTER_HTTP_PATH
             value: "/metrics"
-

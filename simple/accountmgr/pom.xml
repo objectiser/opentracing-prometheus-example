@@ -19,14 +19,19 @@
 	</parent>
 
 	<properties>
+		<docker.registry>local</docker.registry>
+
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
 		<jaeger.version>0.20.6</jaeger.version>
 		<prometheus.version>0.0.23</prometheus.version>
+		<prometheus.jmx-exporter.version>0.10</prometheus.jmx-exporter.version>
 		<opentracing-contrib-springweb.version>0.0.12</opentracing-contrib-springweb.version>
 		<opentracing-contrib-opentracing-metrics.version>0.1.4</opentracing-contrib-opentracing-metrics.version>
+
+		<fabric8.version>0.23.0</fabric8.version>
 	</properties>
 
 	<dependencies>
@@ -73,38 +78,75 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>io.prometheus.jmx</groupId>
+			<artifactId>jmx_prometheus_javaagent</artifactId>
+			<version>${prometheus.jmx-exporter.version}</version>
+		</dependency>
+
 	</dependencies>
 
-	<build>
-		<plugins>
+ 	<build>
+    		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.11</version>
+      			<plugin>
+        			<groupId>io.fabric8</groupId>
+        			<artifactId>docker-maven-plugin</artifactId>
+				<version>${fabric8.version}</version>
 				<configuration>
-					<imageName>objectiser/${project.artifactId}</imageName>
-					<baseImage>jboss/base-jdk:8</baseImage>
-					<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.jar</include>
-						</resource>
-					</resources>
-					<imageTags>
-						<imageTag>${project.version}</imageTag>
-					</imageTags>
-					<env>
-						<VERSION>${project.version}</VERSION>
-					</env>
+					<images>
+						<image>
+							<name>${docker.registry}/${project.artifactId}</name>
+							<build>
+								<from>docker.io/jboss/base-jdk:8</from>
+								<tags>
+									<tag>latest</tag>
+									<tag>${project.version}</tag>
+								</tags>
+								<env>
+									<VERSION>${project.version}</VERSION>
+								</env>
+								<ports>
+									<port>8080</port>
+									<port>9099</port>
+								</ports>
+								<entryPoint>
+									<exec>
+										<arg>java</arg>
+										<arg>-javaagent:/jmx_prometheus_javaagent-0.10.jar=9099:/jmx-exporter-config.yml</arg>
+										<arg>-jar</arg>
+										<arg>/${project.build.finalName}.jar</arg>
+									</exec>
+								</entryPoint>
+								<assembly>
+									<mode>dir</mode>
+									<targetDir>/</targetDir>
+									<inline>
+										<files>
+											<file>
+												<source>${project.basedir}/src/docker-files/jmx-exporter-config.yml</source>
+											</file>
+										</files>
+										<dependencySets>
+									      		<dependencySet>
+									        		<includes>
+									          			<include>io.prometheus.jmx:jmx_prometheus_javaagent</include>
+													<include>${project.groupId}:${project.artifactId}</include>
+									        		</includes>
+									        		<outputDirectory>/</outputDirectory>
+									      		</dependencySet>
+								    		</dependencySets>
+									</inline>
+								</assembly>
+							</build>
+					    	</image>
+					  </images>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
