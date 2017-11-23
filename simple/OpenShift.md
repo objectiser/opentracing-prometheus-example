@@ -11,7 +11,12 @@ eval $(minishift docker-env)
 mvn clean install docker:build
 ```
 
-Run the following command two deploy the services, and prometheus service monitors for those services:
+NOTE: To push to a remote registry you can use:
+```
+mvn clean install docker:build docker:push -docker.registry=docker.io/your_username
+```
+
+Run the following command to deploy the services, and prometheus service monitors for those services:
 
 ```
 oc create -f services-kubernetes.yml
@@ -29,4 +34,3 @@ Final step is to obtain the URL for the new route:
 ```
 export ORDERMGR=https://`oc get route ordermgr -o=jsonpath="{.spec.host}"`
 ```
-

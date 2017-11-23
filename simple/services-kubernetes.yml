@@ -13,10 +13,12 @@ spec:
     spec:
       containers:
       - name: ordermgr 
-        image: objectiser/kubeotprom-ordermgr:0.0.1
+        image: local/kubeotprom-ordermgr:0.0.1
         ports:
         - name: web
           containerPort: 8080
+        - name: prometheus-jmx
+          containerPort: 9099
         env:
           - name: JAEGER_SERVICE_NAME
             value: ordermgr
@@ -66,10 +68,12 @@ spec:
     spec:
       containers:
       - name: accountmgr 
-        image: objectiser/kubeotprom-accountmgr:0.0.1
+        image: local/kubeotprom-accountmgr:0.0.1
         ports:
         - name: web
           containerPort: 8080
+        - name: prometheus-jmx
+          containerPort: 9099
         env:
           - name: JAEGER_SERVICE_NAME
             value: accountmgr
