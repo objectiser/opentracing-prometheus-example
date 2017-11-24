@@ -9,6 +9,8 @@ First step is to install the OpenTracing compliant tracing system and Prometheus
 
 * [OpenShift instructions](OpenShift.md)
 
+* [Istio/Kubernetes instructions](Istio-Kubernetes.md)
+
 The second step is to try out the example. Instructions are provided in the sub-folder on how to deploy
 and use the example.
 

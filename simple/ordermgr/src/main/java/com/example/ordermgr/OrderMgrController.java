@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import io.opentracing.ActiveSpan;
+
 @RestController
 public class OrderMgrController {
 
@@ -23,8 +25,12 @@ public class OrderMgrController {
     public String buy() throws InterruptedException {
         Thread.sleep(1 + (long)(Math.random()*500));
         Optional.ofNullable(tracer.activeSpan()).ifPresent(as -> as.setBaggageItem("transaction", "buy"));
-        ResponseEntity<String> response = restTemplate.getForEntity(accountMgrUrl + "/account", String.class);
-        return "BUY + " + response.getBody();
+        try (ActiveSpan span = tracer.buildSpan("SomeWork").startActive()) {
+            span.setTag("work", "buying");
+
+            ResponseEntity<String> response = restTemplate.getForEntity(accountMgrUrl + "/account", String.class);
+            return "BUY + " + response.getBody();
+        }
     }
 
     @RequestMapping("/sell")

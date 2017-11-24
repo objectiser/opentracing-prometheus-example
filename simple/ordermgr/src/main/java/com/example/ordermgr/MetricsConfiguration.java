@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import io.opentracing.contrib.metrics.MetricLabel;
 import io.opentracing.contrib.metrics.label.BaggageMetricLabel;
 import io.opentracing.contrib.metrics.label.ConstMetricLabel;
-
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
