@@ -25,11 +25,11 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
-		<jaeger.version>0.20.6</jaeger.version>
+		<jaeger.version>0.21.0</jaeger.version>
 		<prometheus.version>0.0.23</prometheus.version>
 		<prometheus.jmx-exporter.version>0.10</prometheus.jmx-exporter.version>
 		<opentracing-contrib-springweb.version>0.0.12</opentracing-contrib-springweb.version>
-		<opentracing-contrib-opentracing-metrics.version>0.1.4</opentracing-contrib-opentracing-metrics.version>
+		<opentracing-contrib-opentracing-metrics.version>0.1.5</opentracing-contrib-opentracing-metrics.version>
 
 		<fabric8.version>0.23.0</fabric8.version>
 	</properties>
