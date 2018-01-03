@@ -7,6 +7,7 @@ spec:
   template:
     metadata:
       labels:
+        app: ordermgr
         service: ordermgr
       annotations:
         prometheus.io/scrape: "true"
@@ -23,7 +24,7 @@ spec:
           - name: JAEGER_SERVICE_NAME
             value: ordermgr
           - name: JAEGER_AGENT_HOST
-            value: jaeger-agent
+            value: jaeger-agent.istio-system
           - name: JAEGER_SAMPLER_TYPE
             value: const
           - name: JAEGER_SAMPLER_PARAM
@@ -32,6 +33,8 @@ spec:
             value: "true"
           - name: JAEGER_TAGS
             value: "version=${VERSION}"
+          - name: JAEGER_PROPAGATION
+            value: b3
           - name: ACCOUNTMGR_URL
             value: "http://accountmgr:8080"
           - name: OPENTRACING_METRICS_EXPORTER_HTTP_PATH
@@ -60,6 +63,7 @@ spec:
   template:
     metadata:
       labels:
+        app: accountmgr
         service: accountmgr
       annotations:
         prometheus.io/scrape: "true"
@@ -76,7 +80,7 @@ spec:
           - name: JAEGER_SERVICE_NAME
             value: accountmgr
           - name: JAEGER_AGENT_HOST
-            value: jaeger-agent
+            value: jaeger-agent.istio-system
           - name: JAEGER_SAMPLER_TYPE
             value: const
           - name: JAEGER_SAMPLER_PARAM
@@ -85,6 +89,8 @@ spec:
             value: "true"
           - name: JAEGER_TAGS
             value: "version=${VERSION}"
+          - name: JAEGER_PROPAGATION
+            value: b3
           - name: OPENTRACING_METRICS_EXPORTER_HTTP_PATH
             value: "/metrics"
 ---
@@ -101,4 +107,30 @@ spec:
   ports:
   - name: http
     port: 8080
-
+---
+###########################################################################
+# Ingress resource (gateway)
+##########################################################################
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gateway
+  annotations:
+    kubernetes.io/ingress.class: "istio"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /buy
+        backend:
+          serviceName: ordermgr
+          servicePort: 8080
+      - path: /sell
+        backend:
+          serviceName: ordermgr
+          servicePort: 8080
+      - path: /fail
+        backend:
+          serviceName: ordermgr
+          servicePort: 8080
+---
