@@ -56,11 +56,6 @@
 			<artifactId>jaeger-tracerresolver</artifactId>
 			<version>${jaeger.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.uber.jaeger</groupId>
-			<artifactId>jaeger-b3</artifactId>
-			<version>${jaeger.version}</version>
-		</dependency>
 
 		<dependency>
 		     <groupId>io.prometheus</groupId>
