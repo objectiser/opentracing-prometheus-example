@@ -45,12 +45,38 @@
 			<artifactId>opentracing-spring-web-autoconfigure</artifactId>
 			<version>${opentracing-contrib-springweb.version}</version>
 		</dependency>
+		<!-- 
 		<dependency>
 			<groupId>io.opentracing.contrib</groupId>
 			<artifactId>opentracing-metrics-prometheus-spring-autoconfigure</artifactId>
 			<version>${opentracing-contrib-opentracing-metrics.version}</version>
 		</dependency>
+		-->
 
+		<dependency>
+			<groupId>io.opentracing.brave</groupId>
+			<artifactId>brave-opentracing</artifactId>
+			<version>0.22.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.brave</groupId>
+			<artifactId>brave</artifactId>
+			<version>4.8.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-sender-okhttp3</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		
+		<!--
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+        -->
+<!--
 		<dependency>
 			<groupId>com.uber.jaeger</groupId>
 			<artifactId>jaeger-tracerresolver</artifactId>
@@ -61,6 +87,7 @@
 			<artifactId>jaeger-b3</artifactId>
 			<version>${jaeger.version}</version>
 		</dependency>
+-->
 
 		<!-- Hotspot JVM metrics -->
 		<dependency>
