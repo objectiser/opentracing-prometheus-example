@@ -9,6 +9,7 @@ spec:
       labels:
         app: ordermgr
         service: ordermgr
+        version: 0.0.1
       annotations:
         prometheus.io/scrape: "true"
     spec:
@@ -65,6 +66,7 @@ spec:
       labels:
         app: accountmgr
         service: accountmgr
+        version: 0.0.1
       annotations:
         prometheus.io/scrape: "true"
     spec:
