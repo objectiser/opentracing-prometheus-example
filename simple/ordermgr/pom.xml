@@ -40,23 +40,6 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>io.opentracing.contrib</groupId>
-			<artifactId>opentracing-spring-cloud-starter</artifactId>
-			<version>${opentracing-contrib-spring-cloud.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.opentracing.contrib</groupId>
-			<artifactId>opentracing-metrics-prometheus-spring-autoconfigure</artifactId>
-			<version>${opentracing-contrib-opentracing-metrics.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.uber.jaeger</groupId>
-			<artifactId>jaeger-tracerresolver</artifactId>
-			<version>${jaeger.version}</version>
-		</dependency>
-
 		<!-- Hotspot JVM metrics -->
 		<dependency>
 		     <groupId>io.prometheus</groupId>
