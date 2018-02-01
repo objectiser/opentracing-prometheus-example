@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import io.opentracing.ActiveSpan;
+import io.opentracing.Scope;
 
 @RestController
 public class OrderMgrController {
@@ -25,8 +25,8 @@ public class OrderMgrController {
     public String buy() throws InterruptedException {
         Thread.sleep(1 + (long)(Math.random()*500));
         Optional.ofNullable(tracer.activeSpan()).ifPresent(as -> as.setBaggageItem("transaction", "buy"));
-        try (ActiveSpan span = tracer.buildSpan("SomeWork").startActive()) {
-            span.setTag("work", "buying");
+        try (Scope scope = tracer.buildSpan("SomeWork").startActive(true)) {
+            scope.span().setTag("work", "buying");
 
             ResponseEntity<String> response = restTemplate.getForEntity(accountMgrUrl + "/account", String.class);
             return "BUY + " + response.getBody();
