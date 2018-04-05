@@ -23,7 +23,9 @@ spec:
           - name: JAEGER_SERVICE_NAME
             value: ordermgr
           - name: JAEGER_AGENT_HOST
-            value: jaeger-agent
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
           - name: JAEGER_SAMPLER_TYPE
             value: const
           - name: JAEGER_SAMPLER_PARAM
@@ -76,7 +78,9 @@ spec:
           - name: JAEGER_SERVICE_NAME
             value: accountmgr
           - name: JAEGER_AGENT_HOST
-            value: jaeger-agent
+            valueFrom:
+              fieldRef:
+                fieldPath: status.hostIP
           - name: JAEGER_SAMPLER_TYPE
             value: const
           - name: JAEGER_SAMPLER_PARAM
