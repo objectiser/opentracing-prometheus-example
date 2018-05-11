@@ -23,17 +23,45 @@ is fully running before moving onto the next step.
 
 Follow the instructions for installing [Istio](https://istio.io/docs/setup/kubernetes/quick-start.html) in minikube.
 
+NOTE: Use of Istio 0.7.1 or higher is required to avoid prometheus scrapes being recorded as trace instances in Jaeger.
 
-## Prometheus (TO BE UPDATED - IGNORE FOR NOW)
+### Prometheus
+
 Add configuration to locate services to be monitored based on annotations: prometheus.io/scrape: "true".
 
-```
-kubectl create -f prometheus-kubernetes.yml
-```
-Open the Prometheus dashboard using the link returned from:
+Install Prometheus using the 'add-on' template provided in the Istio distribution:
 
 ```
-minikube service prometheus --url
+kubectl apply -f install/kubernetes/addons/prometheus.yaml
+```
+NOTE: From version 0.8.0, the 'add-ons' will no longer be provided directly, and instead will be
+installed via helm.
+
+#### Avoid trace instances being created for Prometheus metric scrapes
+
+By default, Prometheus scrape requests to retrieve metrics from annotated services will result in Istio recording a trace instance. To avoid this, before deploying Prometheus, you should first
+deploy the following NGINX proxy which will add an extra header to the scrape request to
+disable tracing.
+
+```
+kubectl create -f prometheus-nginx.yml -n istio-system
+``` 
+
+To ensure that Prometheus requests are proxied through this NGINX gateway, we need to update
+the `prometheus.yaml` to include the following `proxy_url` property to two of the scrape jobs:
+
+```
+    # scrape config for service endpoints.
+    - job_name: 'kubernetes-service-endpoints'
+      proxy_url: 'http://prometheus-nginx:9191'
+
+    ...
+
+    # Example scrape config for pods
+    - job_name: 'kubernetes-pods'
+      proxy_url: 'http://prometheus-nginx:9191'
+
+    ...
 ```
 
 ## OpenTracing
