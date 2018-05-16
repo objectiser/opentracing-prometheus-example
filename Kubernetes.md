@@ -20,16 +20,24 @@ NOTE: After using `kubectl create -f ...` to deploy something to Kubernetes, use
 is fully running before moving onto the next step.
 
 ## Prometheus
+
 Add configuration to locate services to be monitored based on annotations: prometheus.io/scrape: "true".
 
-```
-kubectl create -f prometheus-kubernetes.yml
-```
-Open the Prometheus dashboard using the link returned from:
+Prometheus can be installed using helm:
 
 ```
-minikube service prometheus --url
+helm init
+helm install stable/prometheus
 ```
+
+Follow the displayed instructions to expose a port to the console, e.g.
+
+```
+export POD_NAME=$(kubectl get pods --namespace default -l "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace default port-forward $POD_NAME 9090
+```
+
+and then open up a browser at http://localhost:9090/graph
 
 ## OpenTracing
 
