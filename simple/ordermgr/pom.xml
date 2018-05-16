@@ -29,7 +29,7 @@
 		<prometheus.version>0.0.23</prometheus.version>
 		<prometheus.jmx-exporter.version>0.10</prometheus.jmx-exporter.version>
 		<opentracing-contrib-springcloud.version>0.1.6</opentracing-contrib-springcloud.version>
-		<opentracing-contrib-opentracing-metrics.version>0.2.0</opentracing-contrib-opentracing-metrics.version>
+		<opentracing-contrib-opentracing-metrics.version>0.3.0</opentracing-contrib-opentracing-metrics.version>
 
 		<fabric8.version>0.23.0</fabric8.version>
 	</properties>
