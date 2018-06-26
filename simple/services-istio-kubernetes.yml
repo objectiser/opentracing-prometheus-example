@@ -21,6 +21,16 @@ spec:
           containerPort: 8080
         - name: prometheus-jmx
           containerPort: 9099
+        readinessProbe:
+          httpGet:
+            path: "/health"
+            port: http
+        livenessProbe:
+          httpGet:
+            path: "/health"
+            port: http
+          initialDelaySeconds: 60
+          periodSeconds: 10
         env:
           - name: JAEGER_SERVICE_NAME
             value: ordermgr
@@ -78,6 +88,16 @@ spec:
           containerPort: 8080
         - name: prometheus-jmx
           containerPort: 9099
+        readinessProbe:
+          httpGet:
+            path: "/health"
+            port: http
+        livenessProbe:
+          httpGet:
+            path: "/health"
+            port: http
+          initialDelaySeconds: 60
+          periodSeconds: 10
         env:
           - name: JAEGER_SERVICE_NAME
             value: accountmgr

@@ -15,4 +15,9 @@ public class AccountMgrController {
         return "Account details";
     }
 
+    @RequestMapping("/health")
+    public String getHealth() throws InterruptedException {
+        return "Ok";
+    }
+
 }

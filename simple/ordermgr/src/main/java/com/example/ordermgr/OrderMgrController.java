@@ -47,4 +47,10 @@ public class OrderMgrController {
         ResponseEntity<String> response = restTemplate.getForEntity(accountMgrUrl + "/missing", String.class);
         return "FAIL + " + response.getBody();
     }
+
+    @RequestMapping("/health")
+    public String getHealth() throws InterruptedException {
+        return "Ok";
+    }
+
 }
