@@ -25,7 +25,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
-		<jaeger.version>0.30.0</jaeger.version>
+		<jaeger.version>0.31.0</jaeger.version>
+		<micrometer.version>1.0.0</micrometer.version>
 		<prometheus.version>0.0.23</prometheus.version>
 		<prometheus.jmx-exporter.version>0.10</prometheus.jmx-exporter.version>
 		<opentracing-contrib-springcloud.version>0.1.6</opentracing-contrib-springcloud.version>
@@ -53,13 +54,19 @@
 
 		<dependency>
 			<groupId>io.jaegertracing</groupId>
-			<artifactId>jaeger-tracerresolver</artifactId>
+			<artifactId>jaeger-client</artifactId>
 			<version>${jaeger.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.jaegertracing</groupId>
-			<artifactId>jaeger-thrift</artifactId>
+			<artifactId>jaeger-micrometer</artifactId>
 			<version>${jaeger.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<version>${micrometer.version}</version>
 		</dependency>
 
 		<dependency>
